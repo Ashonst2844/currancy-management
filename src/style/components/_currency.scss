@@ -1,0 +1,19 @@
+@use '../base' as base;
+
+@mixin currency-sect {
+    @include base.card(#{1 / 1 / 3 / 3});
+    span {
+        font-size: 3rem;
+        display: inline-block;
+    }
+    &__total {
+        font-size: larger;
+        opacity: 0.6;
+        &:hover {
+            opacity: 1;
+        }
+    }
+    p {
+        color: white;
+    }
+}

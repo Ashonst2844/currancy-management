@@ -1,0 +1,11 @@
+@use '../base' as base;
+
+@mixin name-card {
+    @include base.card(#{3 / 1 / 4 / 3});
+    h1 {
+        font-size: 2rem;
+    }
+    span {
+        color: white;
+    }
+}

@@ -1,0 +1,49 @@
+// sass --watch src/style/dist/main.scss src/style/dist/main.css --no-source-map
+
+@use '../base' as base;
+@use '../components' as c;
+
+.plus {
+    color: base.$plus !important;
+    &:hover {
+        text-shadow: 0 0 10px base.$plus;
+    }
+}
+.minus {
+    color: base.$minus !important;
+    &:hover {
+        text-shadow: 0 0 10px base.$minus;
+    }
+}
+
+* {
+    @include base.reset;
+}
+body {
+    @include c.page;
+    background-color: base.$base;
+}
+#currency {
+    @include base.flex;
+    @include c.currency-sect;
+}
+#name {
+    @include base.flex;
+    @include c.name-card;
+}
+#income {
+    @include base.flex;
+    @include base.card(#{1 / 3 / 4 / 5});
+}
+#outcome {
+    @include base.flex;
+    @include base.card(#{1 / 5 / 4 / 7});
+}
+#calc {
+    @include base.flex;
+    @include c.tools(#{4 / 1 / 5 / 2});
+}
+#convert {
+    @include base.flex;
+    @include c.tools(#{5 / 1 / 6 / 2});
+}
