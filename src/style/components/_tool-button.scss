@@ -1,8 +1,16 @@
 @use '../base' as base;
 
 @mixin tools {
+    @include base.card;
+    grid-area: 4 / 1 / 6 / 2;
     cursor: pointer;
+    img {
+        transform: scale(0.8);
+    }
     &:hover {
         filter: brightness(150%);
+        img {
+            scale: 1.3;
+        }
     }
 }

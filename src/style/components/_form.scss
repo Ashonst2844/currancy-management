@@ -1,0 +1,42 @@
+@use '../base' as base;
+
+@mixin form-box {
+    @include base.sizing(100%, 100%);
+    position: absolute;
+    z-index: 2000;
+    background-color: rgba(#000000, .6);
+    #form-title {
+        position: absolute;
+        font-size: 2em;
+        color: white;
+        text-transform: uppercase;
+        text-shadow: 3px 3px 10px rgba(#000000, .6);
+        @include base.sizing(100%, 50px);
+        @include base.flex
+    }
+    form {
+        @include base.sizing(100%, 100%);
+        @include base.flex;
+        position: absolute;
+        gap: 10px;
+        flex-direction: column;
+        input {
+            @include base.sizing(40%, 40px);
+            background-color: base.$base;
+            padding: 10px; 
+        }
+        input[type="submit"] {
+            background-color: base.$secondary;
+            color: white;
+        }
+        input[type="submit"]:hover {
+            filter: brightness(150%);
+        }
+    }
+    button {
+        z-index: 2001;
+        top: 20px;
+        right: 20px;
+        transform: rotate(45deg);
+    }
+}

@@ -43,9 +43,11 @@
 @mixin card {
     border-radius: 20px;
     outline: 2px solid c.$secondary;
-    outline-offset: -10px;
+    outline-offset: -5px;
     box-shadow: 4px 4px 7px c.$shadow;
     padding: 20px;
     background-color: c.$primary;
     flex-direction: column;
+    opacity: 0;
+    transform: scale(0.7);
 }

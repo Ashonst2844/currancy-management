@@ -1,3 +1,7 @@
+gsap.registerPlugin(TextPlugin)
+
+var tl = gsap.timeline()
+
 const money_display = document.getElementById('currency__total')
 const username = document.getElementById('username')
 const incomes_data = document.querySelectorAll(".incomes span");
@@ -32,8 +36,22 @@ async function ambilDataDariServer() {
         currency_format = new Intl.NumberFormat("id-ID").format(money)
         console.log(name, ": ", currency_format, " ", typeof(currency_format))
 
-        money_display.textContent = currency_format + ",00";
-        username.textContent = name
+        let counter = {value:0}
+
+        tl.to(counter, {
+            value : money,
+            duration: 3,
+            ease:"power1.out",
+            onUpdate: () => {
+                money_display.innerHTML = Math.floor(counter.value).toLocaleString()
+            }
+        })
+        
+        tl.to(username, {
+            duration: 2,
+            text: name,
+            ease: "none"
+        }, "-=1")
 
         if (parseInt(money) > 0) {
             money_display.classList.add("plus");
@@ -55,3 +73,43 @@ function goToApp(app) {
     target = "apps/"+app+".html";
     window.location.href += target;
 }
+
+const form_box = document.getElementById('form')
+function open_form(target) {
+    const form = form_box.querySelector('form')
+    const title = document.querySelector('#form-title');
+
+    let state = target.slice(5)
+    let text = "Enter your new " + state + "!"
+
+    title.textContent = text
+
+    console.log(text)
+    form_box.style.display = "block"
+    let path = "src/backend/action/"+target+".php"
+    form_box.style.display = "block"
+    form.setAttribute('action',  path)
+    console.log(path)
+}
+
+function close_form() {
+    form_box.style.display = 'none'
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    tl.to('.cards', {
+        opacity: 1,
+        scale: 1,
+        duration: 0.7,
+        ease: "bounce.in",
+        stagger: 0.2
+    })
+    tl.to([".incomes", ".outcomes", ".bills"], {
+        opacity: 1,
+        scale: 1,
+        x:0,
+        duration: 0.7,
+        ease: "bounce.in",
+        stagger: 0.2
+    },"-=0.5")
+});

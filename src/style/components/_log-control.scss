@@ -11,5 +11,8 @@
     }
     &:hover {
         filter: brightness(150%);
+        img {
+            scale: 1.3;
+        }
     }
 }

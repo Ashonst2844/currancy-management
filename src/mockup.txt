@@ -4,13 +4,12 @@ komponen:
 2. Nama (DONE*)
 3. Log Pemasukan
 4. Log Pengeluaran
-5. Tool #1 (Kalkulator)
-6. Tool #2 (Konverter)
-7. Tombol Estimasi Bulanan
-8. Estimasi Bulana
-9. Tombol Tambah Pemasukan
-10.Tombol Tambah Pengeluaran
-11.Konstanta Pengeluran/Bulan
+5. Tool (Kalkulator)
+6. Tombol Estimasi Bulanan
+7. Estimasi Bulana
+8. Tombol Tambah Pemasukan
+9.Tombol Tambah Pengeluaran
+10.Konstanta Pengeluran/Bulan
 
 CODE:
 
@@ -18,8 +17,7 @@ CODE:
 #name { grid-area: 3 / 1 / 4 / 3; }
 #income { grid-area: 1 / 3 / 4 / 5; }
 #outcome { grid-area: 1 / 5 / 4 / 7; }
-#calc-button { grid-area: 4 / 1 / 5 / 2; }
-#converter-button { grid-area: 5 / 1 / 6 / 2; }
+#calc-button { grid-area: 4 / 1 / 6 / 2; }
 #estimate-button { grid-area: 4 / 2 / 5 / 4; }
 #estimate { grid-area: 5 / 2 / 6 / 4; }
 #add-income-button { grid-area: 4 / 4 / 5 / 5; }

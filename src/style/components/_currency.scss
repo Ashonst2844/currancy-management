@@ -3,17 +3,19 @@
 @mixin currency-sect {
     grid-area: 1 / 1 / 3 / 3;
     span {
-        font-size: 3rem;
+        font-size: 2em;
         display: inline-block;
     }
     &__total {
         font-size: larger;
         opacity: 0.6;
+        font-size: 1.1em;
         &:hover {
             opacity: 1;
         }
     }
     p {
         color: white;
+        font-size: 0.8em;
     }
 }

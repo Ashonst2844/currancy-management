@@ -1,3 +1,9 @@
+<!-- 
+git add .
+git commit -m "massage"
+git push origin master 
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,8 +19,8 @@ $income = mysqli_query($conn, $incomequery);
 $outcomequery = "SELECT * FROM outcome ORDER BY id DESC";
 $outcome = mysqli_query($conn, $outcomequery);
 
-$constquery = "SELECT * FROM const ORDER BY id DESC";
-$const = mysqli_query($conn, $constquery);
+$billquery = "SELECT * FROM bills ORDER BY id DESC";
+$bill = mysqli_query($conn, $billquery);
 ?>
 
 <head>
@@ -26,14 +32,14 @@ $const = mysqli_query($conn, $constquery);
 
 <body>
     <div id="currency" class="cards">
-        <span>Rp. <b id="currency__total"></b></span>
+        <span>Rp. <b id="currency__total">0</b></span>
         <p>Your Current Money</p>
     </div>
     <div id="name" class="cards">
         <h1 id="username"></h1>
-        <span>Wallets</span>
     </div>
     <div id="income" class="cards">
+        <h1 class="header">Your Income</h1>
         <?php while ($income_log = mysqli_fetch_array($income)): ?>
             <div class="incomes" title="<?= $income_log['date'] ?>">
                 <h2><?= htmlspecialchars($income_log['detail']) ?></h2>
@@ -42,6 +48,7 @@ $const = mysqli_query($conn, $constquery);
         <?php endwhile ?>
     </div>
     <div id="outcome" class="cards">
+        <h1 class="header">Your Outcome</h1>
         <?php while ($outcome_log = mysqli_fetch_array($outcome)): ?>
             <div class="outcomes" title="<?= $outcome_log['date'] ?>">
                 <h2><?= htmlspecialchars($outcome_log['detail']) ?></h2>
@@ -54,26 +61,52 @@ $const = mysqli_query($conn, $constquery);
         <img src="src/img/calc.svg">
     </div>
 
-    <div id="convert" title="Converter" onclick="goToApp('convert-app')" class="cards">
-        <img src=" src/img/convert.svg">
-    </div>
-
     <div id="estimate-control" class="cards"></div>
 
     <div id="estimate" class="cards"></div>
 
-    <div id="add-income" class="cards">
+    <div id="add-income" class="cards" onclick="open_form('send-income')">
         <img src="src/img/up.svg">
         <p>Add Income</p>
     </div>
 
-    <div id="add-outcome" class="cards">
+    <div id="add-outcome" class="cards" onclick="open_form('send-outcome')">
         <p>Add Outcome</p>
         <img src="src/img/down.svg">
     </div>
 
-    <div id="const" class="cards"></div>
+    <div id="bill" class="cards">
+        <h1 class="header">Your Bills</h1>
+        <?php while ($bill_log = mysqli_fetch_array($bill)): ?>
+            <div class="bills">
+                <h2><?= htmlspecialchars($bill_log['detail']) ?></h2>
+                <span>Rp.<?= number_format($bill_log['currency'], 0, ',', '.') ?></span>
+                <form action="src/backend/action/delete-bill.php" method="post" class="bills__delete">
+                    <input type="hidden" name="id" value="<?php echo $bill_log['id']; ?>">
+                    <input type="submit" value="X">
+                </form>
+            </div>
+        <?php endwhile ?>
+        <button class="button-1" title="New Bills" id="bill__button" onclick="open_form('send-bill')">
+            <img src="src/img/cross.svg">
+        </button>
+    </div>
 
+    <div id="form">
+        <h1 id="form-title"></h1>
+        <form method="post">
+            <input type="text" name="detail" id="__detail" placeholder="Input Detail (max.50)" required>
+            <input type="number" name="currency" id="__currency" placeholder="Input Currency (ex.20000)" min="0"
+                step="500" required>
+            <input type="submit" value="Submit">
+        </form>
+        <button class="button-1" title="Close" onclick="close_form()">
+            <img src="src/img/cross.svg">
+        </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/TextPlugin.min.js"></script>
     <script src="src/script/main.js"></script>
 </body>
 

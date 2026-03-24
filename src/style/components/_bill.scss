@@ -1,0 +1,69 @@
+@use '../base' as base;
+
+@mixin bill-button {
+    position: fixed;
+    background-color: base.$base;
+    border-radius: 50%;
+    opacity: 0.4;
+    cursor: pointer;
+    @include base.flex;
+    @include base.sizing(50px,50px);
+    img  {
+        transform: scale(0.7);
+    }
+    &:hover {
+        opacity: 1;
+    }
+}
+
+@mixin bill {
+    grid-area: 4 / 5 / 6 / 7;
+    display: flex;
+    justify-content: start;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    .bills {
+        @include base.sizing(100%, 30px);
+        @include base.flex;
+        gap: 5px;
+        margin-block: 5px;
+        transform: translateX(100px) scale(0.7);
+        opacity: 0;
+        h2,span,form {
+            background-color: base.$base;
+            border-radius: 10px
+        }
+        h2 {
+            @include base.sizing(50%, 100%);
+            @include base.flex;
+        }
+        span {
+            @include base.sizing(40%, 100%);
+            color: base.$minus;
+            text-shadow: 0 0 10px base.$minus;
+            @include base.flex;
+        }
+        form {
+            @include base.sizing(10%, 100%);
+            @include base.flex;
+            input {
+                @include base.sizing(100%,100%);
+                background-color: base.$minus;
+                font-size: 1.5em;
+                color: white;
+                cursor: pointer;
+                border-radius: 10px;
+                &:hover {
+                    filter: brightness(150%);
+                    box-shadow: 0 0 10px base.$minus;
+                }
+            }
+        }
+    }
+    &__button {
+        z-index: 1000;
+        bottom: 20px;
+        left: 20px;
+    }
+}
