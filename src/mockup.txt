@@ -1,7 +1,7 @@
 komponen:
 
-1. Jumlah Uang Saat Ini
-2. Nama
+1. Jumlah Uang Saat Ini (DONE*)
+2. Nama (DONE*)
 3. Log Pemasukan
 4. Log Pengeluaran
 5. Tool #1 (Kalkulator)

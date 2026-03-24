@@ -1,0 +1,15 @@
+@use '../base' as base;
+
+@mixin log-control {
+    cursor: pointer;
+    img {
+        margin-block: 10px;
+    }
+    p {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+    &:hover {
+        filter: brightness(150%);
+    }
+}

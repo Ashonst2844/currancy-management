@@ -15,6 +15,10 @@
         text-shadow: 0 0 10px base.$minus;
     }
 }
+.cards {
+    @include base.flex;
+    @include base.card;
+}
 
 * {
     @include base.reset;
@@ -31,19 +35,49 @@ body {
     @include base.flex;
     @include c.name-card;
 }
+#income, #outcome {
+    @include c.log;
+}
+#income .incomes, #outcome .outcomes {
+    @include c.log-box;
+}
 #income {
-    @include base.flex;
-    @include base.card(#{1 / 3 / 4 / 5});
+    grid-area: 1 / 3 / 4 / 5;
 }
 #outcome {
+    grid-area: 1 / 5 / 4 / 7;
+}
+#calc, #convert {
     @include base.flex;
-    @include base.card(#{1 / 5 / 4 / 7});
+    @include c.tools;
 }
 #calc {
-    @include base.flex;
-    @include c.tools(#{4 / 1 / 5 / 2});
+    grid-area: 4 / 1 / 5 / 2;
 }
 #convert {
+    grid-area: 5 / 1 / 6 / 2
+}
+#estimate-control, #estimate {
     @include base.flex;
-    @include c.tools(#{5 / 1 / 6 / 2});
+    @include c.estimate;
+}
+#estimate-control {
+    grid-area: 4 / 2 / 5 / 4;
+}
+#estimate {
+    grid-area: 5 / 2 / 6 / 4;
+}
+#add-income, #add-outcome {
+    @include base.flex;
+    @include c.log-control
+}
+#add-income {
+    grid-area: 4 / 4 / 5 / 5;
+}
+#add-outcome {
+    grid-area: 5 / 4 / 6 / 5;
+}
+#const {
+    @include base.flex;
+    @include c.const;
 }

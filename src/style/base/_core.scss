@@ -40,13 +40,12 @@
     height: 100%;
 }
 
-@mixin card($area) {
+@mixin card {
     border-radius: 20px;
     outline: 2px solid c.$secondary;
     outline-offset: -10px;
     box-shadow: 4px 4px 7px c.$shadow;
     padding: 20px;
-    grid-area: #{$area};
     background-color: c.$primary;
     flex-direction: column;
 }

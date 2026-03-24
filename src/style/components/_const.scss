@@ -1,0 +1,5 @@
+@use '../base' as base;
+
+@mixin const {
+    grid-area: 4 / 5 / 6 / 7;
+}

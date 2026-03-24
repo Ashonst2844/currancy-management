@@ -1,8 +1,7 @@
 @use '../base' as base;
 
-@mixin tools($area) {
+@mixin tools {
     cursor: pointer;
-    @include base.card($area);
     &:hover {
         filter: brightness(150%);
     }

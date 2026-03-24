@@ -1,7 +1,7 @@
 @use '../base' as base;
 
 @mixin currency-sect {
-    @include base.card(#{1 / 1 / 3 / 3});
+    grid-area: 1 / 1 / 3 / 3;
     span {
         font-size: 3rem;
         display: inline-block;

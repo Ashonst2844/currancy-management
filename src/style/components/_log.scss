@@ -1,1 +1,38 @@
 @use '../base' as base;
+
+@mixin log {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    gap: 10px;
+    display: flex;
+    justify-content: start;
+}
+@mixin log-box {
+    width: 100%;
+    height: 60px;
+    background-color: base.$base;
+    padding: 10px;
+    border-radius: inherit;
+    cursor: pointer;
+    display: flex;
+    h2 {
+        display: flex;
+        align-items: center;
+        font-size: 1.2em;
+        @include  base.sizing(60%,100%)
+    }
+    span {
+        font-size: 1.2em;
+        @include  base.sizing(40%,100%);
+        @include  base.flex;
+    }
+    &.incomes span {
+        color: base.$plus;
+    }
+    &.outcomes span {
+        color: base.$minus;
+    }
+    &:hover {
+        filter: brightness(150%);
+    }
+}
