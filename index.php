@@ -45,7 +45,7 @@ $const = mysqli_query($conn, $constquery);
         <?php while ($outcome_log = mysqli_fetch_array($outcome)): ?>
             <div class="outcomes" title="<?= $outcome_log['date'] ?>">
                 <h2><?= htmlspecialchars($outcome_log['detail']) ?></h2>
-                <span>+<?= number_format($outcome_log['outcome'], 0, ',', '.') ?></span>
+                <span>-<?= number_format($outcome_log['outcome'], 0, ',', '.') ?></span>
             </div>
         <?php endwhile ?>
     </div>

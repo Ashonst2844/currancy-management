@@ -1,10 +1,23 @@
 const money_display = document.getElementById('currency__total')
 const username = document.getElementById('username')
+const incomes_data = document.querySelectorAll(".incomes span");
+const outcomes_data = document.querySelectorAll(".outcomes span");
 
 var data_list;
 
 var name;
 var money;
+var total_incomes = 0;
+var total_outcomes = 0;
+
+incomes_data.forEach((income)=> {
+    let int = parseFloat(income.textContent.slice(1))
+    total_incomes += int
+})
+outcomes_data.forEach((outcomes)=> {
+    let int = parseFloat(outcomes.textContent.slice(1))
+    total_outcomes += int
+})
 
 async function ambilDataDariServer() {
     try {
@@ -14,7 +27,7 @@ async function ambilDataDariServer() {
         data_list = data;
         
         name = data_list[0].name
-        money = data_list[0].currency
+        money = data_list[0].currency + (total_incomes*1000) - (total_outcomes*1000)
         
         currency_format = new Intl.NumberFormat("id-ID").format(money)
         console.log(name, ": ", currency_format, " ", typeof(currency_format))
