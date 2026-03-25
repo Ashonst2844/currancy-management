@@ -1,0 +1,48 @@
+@use '../base' as base;
+
+@mixin wishlist {
+    grid-area: 4 / 2 / 6 / 4;
+    display: flex;
+    justify-content: start;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    .wishlists {
+        @include base.sizing(100%, 30px);
+        @include base.flex;
+        gap: 5px;
+        margin-block: 5px;
+        transform: translateX(100px) scale(0.7);
+        opacity: 0;
+        h2,span {
+            background-color: base.$base;
+            border-radius: 10px
+        }
+        h2 {
+            @include base.sizing(60%, 100%);
+            @include base.flex;
+            color: white;
+            &::before  {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: base.$plus;
+                opacity: 0.4;
+                border-radius: 10px;
+                width: var(--width, 0);
+                height: 100%;
+                max-width: 100%;
+            }
+        }
+        span {
+            @include base.sizing(40%, 100%);
+            @include base.flex;
+        }
+    }
+    &__button {
+        z-index: 1000;
+        bottom: 20px;
+        left: 20px;
+    }
+}

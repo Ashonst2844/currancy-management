@@ -1,6 +1,6 @@
 <!-- 
 git add .
-git commit -m "massage"
+git commit -m "create Bils, Forms, Delete Convert, Fix Income/Outcome, Add some animation use GSAP"
 git push origin master 
 -->
 
@@ -21,6 +21,9 @@ $outcome = mysqli_query($conn, $outcomequery);
 
 $billquery = "SELECT * FROM bills ORDER BY id DESC";
 $bill = mysqli_query($conn, $billquery);
+
+$wishquery = "SELECT * FROM wishlist ORDER BY id DESC";
+$wish = mysqli_query($conn, $wishquery);
 ?>
 
 <head>
@@ -39,7 +42,7 @@ $bill = mysqli_query($conn, $billquery);
         <h1 id="username"></h1>
     </div>
     <div id="income" class="cards">
-        <h1 class="header">Your Income</h1>
+        <h1 class="header">My Income</h1>
         <?php while ($income_log = mysqli_fetch_array($income)): ?>
             <div class="incomes" title="<?= $income_log['date'] ?>">
                 <h2><?= htmlspecialchars($income_log['detail']) ?></h2>
@@ -48,7 +51,7 @@ $bill = mysqli_query($conn, $billquery);
         <?php endwhile ?>
     </div>
     <div id="outcome" class="cards">
-        <h1 class="header">Your Outcome</h1>
+        <h1 class="header">My Outcome</h1>
         <?php while ($outcome_log = mysqli_fetch_array($outcome)): ?>
             <div class="outcomes" title="<?= $outcome_log['date'] ?>">
                 <h2><?= htmlspecialchars($outcome_log['detail']) ?></h2>
@@ -61,9 +64,21 @@ $bill = mysqli_query($conn, $billquery);
         <img src="src/img/calc.svg">
     </div>
 
-    <div id="estimate-control" class="cards"></div>
-
-    <div id="estimate" class="cards"></div>
+    <div id="wishlist" class="cards">
+        <h1 class="header">My Wishlist</h1>
+        <?php while ($wishlist = mysqli_fetch_array($wish)): ?>
+            <div class="wishlists">
+                <h2><?= htmlspecialchars($wishlist['detail']) ?></h2>
+                <span class="wallet">
+                    <i></i>/
+                    <b><?= number_format($wishlist['price'], 0, ',', '.') ?></b>
+                </span>
+            </div>
+        <?php endwhile ?>
+        <button class="button-1" title="New Wishlist" id="wishlist__button" onclick="open_form('send-wishlist')">
+            <img src="src/img/cross.svg">
+        </button>
+    </div>
 
     <div id="add-income" class="cards" onclick="open_form('send-income')">
         <img src="src/img/up.svg">
@@ -76,7 +91,7 @@ $bill = mysqli_query($conn, $billquery);
     </div>
 
     <div id="bill" class="cards">
-        <h1 class="header">Your Bills</h1>
+        <h1 class="header">My Bills</h1>
         <?php while ($bill_log = mysqli_fetch_array($bill)): ?>
             <div class="bills">
                 <h2><?= htmlspecialchars($bill_log['detail']) ?></h2>

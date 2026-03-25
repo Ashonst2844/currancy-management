@@ -57,15 +57,9 @@ body {
     @include base.flex;
     @include c.tools;
 }
-#estimate-control, #estimate {
+#wishlist {
     @include base.flex;
-    @include c.estimate;
-}
-#estimate-control {
-    grid-area: 4 / 2 / 5 / 4;
-}
-#estimate {
-    grid-area: 5 / 2 / 6 / 4;
+    @include c.wishlist;
 }
 #add-income, #add-outcome {
     @include base.flex;

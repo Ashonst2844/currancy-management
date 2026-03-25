@@ -4,6 +4,7 @@ var tl = gsap.timeline()
 
 const money_display = document.getElementById('currency__total')
 const username = document.getElementById('username')
+const wallet = document.querySelectorAll('.wishlists');
 const incomes_data = document.querySelectorAll(".incomes span");
 const outcomes_data = document.querySelectorAll(".outcomes span");
 
@@ -34,6 +35,25 @@ async function ambilDataDariServer() {
         money = data_list[0].currency + (total_incomes*1000) - (total_outcomes*1000)
         
         currency_format = new Intl.NumberFormat("id-ID").format(money)
+        
+        wallet.forEach(elem => {
+            const current = elem.querySelector('i');
+            const targetText = elem.querySelector('b').textContent;
+            const progress = elem.querySelector('h2');
+            const target = parseInt(targetText.replace(/\./g, ''));
+            
+            current.textContent = currency_format
+            if (money >= target) {
+                current.classList.add('plus')
+                current.classList.remove('minus')
+            } else if(money < target) {
+                current.classList.add('minus')
+                current.classList.remove('plus')
+            }
+            let progression = money/target
+            progress.style.setProperty('--width', `calc(${progression} * 100%)`)
+            console.log(progression)
+        });
         console.log(name, ": ", currency_format, " ", typeof(currency_format))
 
         let counter = {value:0}
@@ -104,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ease: "bounce.in",
         stagger: 0.2
     })
-    tl.to([".incomes", ".outcomes", ".bills"], {
+    tl.to([".incomes", ".outcomes", ".bills", ".wishlists"], {
         opacity: 1,
         scale: 1,
         x:0,
